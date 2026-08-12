@@ -1,0 +1,144 @@
+import { n as createServerFn, o as setResponseHeader, r as getRequestHeader, t as TSS_SERVER_FUNCTION } from "./server-DD_XEmkH.mjs";
+import { n as stringType, t as objectType } from "../_libs/zod.mjs";
+import processModule from "node:process";
+//#region node_modules/.nitro/vite/services/ssr/assets/admin-auth-BEoINsHP.js
+var createServerRpc = (serverFnMeta, splitImportFn) => {
+	const url = "/_serverFn/" + serverFnMeta.id;
+	return Object.assign(splitImportFn, {
+		url,
+		serverFnMeta,
+		[TSS_SERVER_FUNCTION]: true
+	});
+};
+var COOKIE_NAME = "pravasx-admin-session";
+var SESSION_TTL_SECONDS = 28800;
+var loginSchema = objectType({
+	username: stringType().trim().min(1).max(100),
+	password: stringType().min(1).max(200)
+});
+function getConfig() {
+	const isProduction = true;
+	const username = processModule.env.PRAVASX_ADMIN_USERNAME || "";
+	const password = processModule.env.PRAVASX_ADMIN_PASSWORD || "";
+	const secret = processModule.env.PRAVASX_SESSION_SECRET || "";
+	if (!username || !password || !secret) throw new Error("Missing admin authentication environment variables. Set PRAVASX_ADMIN_USERNAME, PRAVASX_ADMIN_PASSWORD and PRAVASX_SESSION_SECRET.");
+	return {
+		username,
+		password,
+		secret,
+		isProduction
+	};
+}
+function toBase64Url(input) {
+	const bytes = typeof input === "string" ? new TextEncoder().encode(input) : input;
+	let binary = "";
+	for (const byte of bytes) binary += String.fromCharCode(byte);
+	return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+function fromBase64Url(value) {
+	const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+	const binary = atob(padded);
+	return new Uint8Array([...binary].map((char) => char.charCodeAt(0)));
+}
+async function sign(payload, secret) {
+	const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), {
+		name: "HMAC",
+		hash: "SHA-256"
+	}, false, ["sign", "verify"]);
+	const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
+	return toBase64Url(new Uint8Array(signature));
+}
+async function verify(payload, signature, secret) {
+	const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), {
+		name: "HMAC",
+		hash: "SHA-256"
+	}, false, ["sign", "verify"]);
+	return crypto.subtle.verify("HMAC", key, fromBase64Url(signature), new TextEncoder().encode(payload));
+}
+function parseCookie(header) {
+	if (!header) return null;
+	for (const part of header.split(/;\s*/)) {
+		const index = part.indexOf("=");
+		if (index === -1) continue;
+		if (part.slice(0, index) === COOKIE_NAME) return part.slice(index + 1);
+	}
+	return null;
+}
+async function createToken(secret) {
+	const session = {
+		sub: "admin",
+		exp: Math.floor(Date.now() / 1e3) + SESSION_TTL_SECONDS
+	};
+	const payload = toBase64Url(JSON.stringify(session));
+	return `${payload}.${await sign(payload, secret)}`;
+}
+async function readSession() {
+	const { secret } = getConfig();
+	const token = parseCookie(getRequestHeader("cookie"));
+	if (!token) return null;
+	const [payload, signature] = token.split(".");
+	if (!payload || !signature) return null;
+	try {
+		if (!await verify(payload, signature, secret)) return null;
+		const session = JSON.parse(new TextDecoder().decode(fromBase64Url(payload)));
+		if (session.sub !== "admin" || typeof session.exp !== "number" || session.exp <= Math.floor(Date.now() / 1e3)) return null;
+		return session;
+	} catch {
+		return null;
+	}
+}
+function setSessionCookie(token, isProduction) {
+	setResponseHeader("Set-Cookie", [
+		`${COOKIE_NAME}=${token}`,
+		"HttpOnly",
+		"SameSite=Lax",
+		"Path=/",
+		`Max-Age=${SESSION_TTL_SECONDS}`,
+		isProduction ? "Secure" : ""
+	].filter(Boolean).join("; "));
+}
+function clearSessionCookie(isProduction) {
+	setResponseHeader("Set-Cookie", [
+		`${COOKIE_NAME}=`,
+		"HttpOnly",
+		"SameSite=Lax",
+		"Path=/",
+		"Max-Age=0",
+		isProduction ? "Secure" : ""
+	].filter(Boolean).join("; "));
+}
+var getAdminSession_createServerFn_handler = createServerRpc({
+	id: "5657035a0ee6556f722dba234784a0e3c2460389c82b35f94de2f5440bef5f56",
+	name: "getAdminSession",
+	filename: "src/lib/admin-auth.ts"
+}, (opts) => getAdminSession.__executeServer(opts));
+var getAdminSession = createServerFn({ method: "GET" }).handler(getAdminSession_createServerFn_handler, async () => {
+	const session = await readSession();
+	return { authenticated: Boolean(session) };
+});
+var loginAdmin_createServerFn_handler = createServerRpc({
+	id: "b30f690c7c4db6ee5c0d491cd43f1c8eb07322a9bac537eba1f13ddbb4f26745",
+	name: "loginAdmin",
+	filename: "src/lib/admin-auth.ts"
+}, (opts) => loginAdmin.__executeServer(opts));
+var loginAdmin = createServerFn({ method: "POST" }).validator(loginSchema).handler(loginAdmin_createServerFn_handler, async ({ data }) => {
+	const { username, password, secret, isProduction } = getConfig();
+	if (data.username !== username || data.password !== password) return {
+		ok: false,
+		error: "Invalid username or password."
+	};
+	setSessionCookie(await createToken(secret), isProduction);
+	return { ok: true };
+});
+var logoutAdmin_createServerFn_handler = createServerRpc({
+	id: "714b8bdd6e41622ea8c921b2022f0a7efd279b2c04f4ab839072930e553f0a5c",
+	name: "logoutAdmin",
+	filename: "src/lib/admin-auth.ts"
+}, (opts) => logoutAdmin.__executeServer(opts));
+var logoutAdmin = createServerFn({ method: "POST" }).handler(logoutAdmin_createServerFn_handler, async () => {
+	const { isProduction } = getConfig();
+	clearSessionCookie(isProduction);
+	return { ok: true };
+});
+//#endregion
+export { getAdminSession_createServerFn_handler, loginAdmin_createServerFn_handler, logoutAdmin_createServerFn_handler };

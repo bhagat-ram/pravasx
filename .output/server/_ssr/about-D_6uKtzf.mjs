@@ -1,0 +1,205 @@
+import { _ as require_jsx_runtime } from "../_libs/@radix-ui/react-accordion+[...].mjs";
+import { _ as Link } from "../_libs/@tanstack/react-router+[...].mjs";
+import { T as CarFront, g as Heart, i as Sparkles, u as MessageCircle, v as Compass } from "../_libs/lucide-react.mjs";
+import { t as Button } from "./router-BJYadRjh.mjs";
+import { n as hero_default, t as Reveal } from "./Reveal-2X68XO8D.mjs";
+//#region node_modules/.nitro/vite/services/ssr/assets/about-D_6uKtzf.js
+var import_jsx_runtime = require_jsx_runtime();
+var principles = [
+	{
+		icon: Compass,
+		title: "Start with the traveller",
+		text: "The trip begins with where you want to go, how long you have and what you want to experience."
+	},
+	{
+		icon: CarFront,
+		title: "Travel + guide together",
+		text: "The service is designed so the ride and local guidance can be arranged as one experience."
+	},
+	{
+		icon: Heart,
+		title: "Keep it personal",
+		text: "Pickup, pace and itinerary can be discussed around the actual group instead of forcing everyone into the same route."
+	}
+];
+var experience = [
+	"Choose your destination and time limit",
+	"Share your pickup point and trip preferences",
+	"Get a guide who can pick you up and drive you, where available",
+	"Agree the itinerary before the trip"
+];
+function About() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+		/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", {
+			className: "relative isolate flex min-h-[62vh] items-center overflow-hidden",
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("img", {
+					src: hero_default,
+					alt: "Road journey through Maharashtra",
+					width: 1920,
+					height: 1088,
+					className: "absolute inset-0 -z-20 h-full w-full object-cover"
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "absolute inset-0 -z-10 bg-hero-gradient",
+					"aria-hidden": "true"
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "mx-auto w-full max-w-7xl px-4 pt-32 pb-16 sm:px-6 lg:px-8",
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, {
+						className: "max-w-3xl",
+						children: [
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "text-xs font-bold uppercase tracking-[0.18em] text-gold",
+								children: "About PravasX"
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h1", {
+								className: "mt-4 font-display text-4xl font-extrabold text-white sm:text-6xl",
+								children: "Travel is easier when the journey and the local experience speak to each other."
+							}),
+							/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "mt-5 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg",
+								children: "PravasX is being shaped around a simple idea: arrange travel and a local guide together, then build the day around the traveller."
+							})
+						]
+					})
+				})
+			]
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+			className: "py-20 sm:py-28",
+			"aria-labelledby": "what-heading",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+					className: "grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start",
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-xs font-bold uppercase tracking-[0.18em] text-accent",
+						children: "What PravasX does"
+					}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						id: "what-heading",
+						className: "mt-3 text-3xl font-extrabold sm:text-4xl",
+						children: "One request instead of several moving parts."
+					})] }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, {
+						delay: 100,
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "text-base leading-relaxed text-muted-foreground",
+							children: "A traveller can choose a place, choose a time limit and tell PravasX where they want to be picked up. The experience can then combine transport, a local guide, guide-as-driver support and an itinerary built around the request."
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+							className: "mt-5 text-base leading-relaxed text-muted-foreground",
+							children: "The website is currently an MVP: it captures the trip brief and sends it to the PravasX team for confirmation. Pricing, availability and final routing are intentionally left for the team to confirm rather than pretending they are already automated."
+						})]
+					})]
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+					className: "mt-14 grid gap-6 md:grid-cols-3",
+					children: principles.map(({ icon: Icon, title, text }, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
+						delay: i * 100,
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("article", {
+							className: "h-full rounded-3xl border border-border bg-card p-7 shadow-sm",
+							children: [
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+									className: "inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-gradient text-accent-foreground",
+									children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Icon, { className: "h-5 w-5" })
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", {
+									className: "mt-5 text-lg font-bold",
+									children: title
+								}),
+								/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+									className: "mt-2 text-sm leading-relaxed text-muted-foreground",
+									children: text
+								})
+							]
+						})
+					}, title))
+				})]
+			})
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+			className: "bg-secondary/60 py-20 sm:py-28",
+			"aria-labelledby": "experience-heading",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+				className: "mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8",
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "text-xs font-bold uppercase tracking-[0.18em] text-accent",
+						children: "The experience"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						id: "experience-heading",
+						className: "mt-3 text-3xl font-extrabold sm:text-4xl",
+						children: "A practical flow from idea to itinerary."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mt-5 max-w-xl text-sm leading-relaxed text-muted-foreground",
+						children: "The MVP keeps the first version intentionally simple. A customer submits a clear trip brief; the team confirms the details and takes the conversation forward."
+					})
+				] }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Reveal, {
+					delay: 100,
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("ol", {
+						className: "space-y-4",
+						children: experience.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("li", {
+							className: "flex items-start gap-4 rounded-2xl border border-border bg-card p-5",
+							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+								className: "flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground",
+								children: i + 1
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "font-semibold",
+								children: item
+							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+								className: "mt-1 text-sm text-muted-foreground",
+								children: i === 0 ? "Destination and duration set the shape of the trip." : i === 1 ? "The pickup point helps the team understand the starting point." : i === 2 ? "Guide-driver availability depends on the requested trip." : "The final plan is confirmed with the traveller."
+							})] })]
+						}, item))
+					})
+				})]
+			})
+		}),
+		/* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
+			className: "bg-navy py-20 sm:py-28",
+			"aria-labelledby": "mvp-heading",
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
+				className: "mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8",
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Reveal, { children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", {
+						className: "mx-auto inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/15 text-gold",
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Sparkles, { className: "h-5 w-5" })
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", {
+						id: "mvp-heading",
+						className: "mt-5 font-display text-3xl font-extrabold text-white sm:text-4xl",
+						children: "Built to prove the idea, not hide the gaps."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", {
+						className: "mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/65",
+						children: "The current product focuses on the part that matters first: getting a real trip request from a real traveller to the team with enough detail to act on it."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+						className: "mt-8 flex flex-col justify-center gap-3 sm:flex-row",
+						children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							variant: "brand",
+							size: "xl",
+							asChild: true,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+								to: "/",
+								children: "Plan a trip"
+							})
+						}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							variant: "goldOutline",
+							size: "xl",
+							asChild: true,
+							children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("a", {
+								href: "https://wa.me/919970348409",
+								target: "_blank",
+								rel: "noreferrer",
+								children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(MessageCircle, { className: "h-4 w-4" }), " Talk to PravasX"]
+							})
+						})]
+					})
+				] })
+			})
+		})
+	] });
+}
+//#endregion
+export { About as component };
